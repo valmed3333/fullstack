@@ -32,5 +32,5 @@ public class ejercicio6 {
             System.out.println("Ninguno de los números ingresados es mayor que 25");
         }
     }
-    
+            
 }
