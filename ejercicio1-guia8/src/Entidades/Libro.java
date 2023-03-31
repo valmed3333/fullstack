@@ -16,8 +16,11 @@ public class Libro {
     private String autor;
     private int numeroPaginas;
     //creo mi constructor vacio
+
     public Libro() {
     }
+
+    
     /**
      * Creo mi constructor con los siguientes parametros
      * @param ISBN

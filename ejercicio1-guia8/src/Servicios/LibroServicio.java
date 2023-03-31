@@ -25,16 +25,17 @@ public class LibroServicio {
         String autor = leer.next();
         System.out.println("Ingrese el número de páginas del libro a registrar");
         int numeroPagina = leer.nextInt();
-        
-        return new Libro(ISBN,titulo,autor,numeroPagina);
+
+        return new Libro(ISBN, titulo, autor, numeroPagina);
     }
-    
-    public void mostrarLibro(Libro libro1){
+
+    public void mostrarLibro(Libro libro1) {
         System.out.println("El ISBN es: " + libro1.getISBN());
-        System.out.println("El título del libro es: "+libro1.getTitulo());
-        System.out.println("El autor del libro es: "+libro1.getAutor());
-        System.out.println("El número de páginas del libro es: "+libro1.getNumeroPaginas());
-        
+        System.out.println("El título del libro es: " + libro1.getTitulo());
+        System.out.println("El autor del libro es: " + libro1.getAutor());
+        System.out.println("El número de páginas del libro es: " + libro1.getNumeroPaginas());
+
+        System.out.println(libro1);
     }
 
 }
