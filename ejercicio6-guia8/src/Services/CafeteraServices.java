@@ -37,6 +37,7 @@ public class CafeteraServices {
 
     public void vaciarCafetera(Cafetera c1) {
         c1.setCantidadActual(0);
+        System.out.println("Se ha vaciado la cafetera");
     }
 
     public void agregarCafe(Cafetera c1) {
