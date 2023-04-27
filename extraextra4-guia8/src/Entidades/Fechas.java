@@ -10,11 +10,11 @@ package Entidades;
  * @author SimonValera
  */
 public class Fechas {
-    private int dia=1, mes=1, anio=1900;
-    private String[] meses = {"","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
-    
-    
-    
+
+    private int dia = 1, mes = 1, anio = 1900;
+    //private String[] meses = {"","ENERO","FEBRERO","MARZO","ABRIL","MAYO",
+    //"JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
+
     public Fechas() {
     }
 
@@ -47,7 +47,5 @@ public class Fechas {
     public void setAnio(int anio) {
         this.anio = anio;
     }
-    
-    
-    
+
 }

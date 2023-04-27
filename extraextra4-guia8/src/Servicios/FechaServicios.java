@@ -17,14 +17,36 @@ public class FechaServicios {
     Scanner leer = new Scanner(System.in);
 
     public void crearFecha(Fechas f1) {
-        System.out.println("Ingresemos una fecha");
-        System.out.println("Ingrese el día");
-        f1.setDia(leer.nextInt());
-        System.out.println("Ingrese el mes");
-        f1.setMes(leer.nextInt());
-        System.out.println("Ingrese el año");
-        f1.setAnio(leer.nextInt());
-        verificarAnio(f1);
+        boolean salirMes = false;
+        String[] meses = {"", "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO",
+            "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE",
+            "DICIEMBRE"};
+        do {
+            System.out.println("Ingresemos una fecha");
+            System.out.println("Ingrese el día");
+            f1.setDia(leer.nextInt());
+            salirMes = false;
+            while (!salirMes) {
+                System.out.println("Ingrese el mes");
+                f1.setMes(leer.nextInt());
+                if (f1.getMes() > 12 || f1.getMes() < 1) {
+                    System.out.println("El mes ingresado no es válido, inténtelo de nuevo.");
+                } else {
+                    salirMes = true;
+                }
+
+            }
+            System.out.println("Ingrese el año");
+            f1.setAnio(leer.nextInt());
+            verificarAnio(f1);
+            if (f1.getDia() > cantidadDias(f1)) {
+                System.out.println("El día ingresado no es válido porque "
+                        + meses[f1.getMes()] + " del año " + f1.getAnio()
+                        + " tiene " + cantidadDias(f1) + " dias.");
+            }
+
+        } while (f1.getDia() > cantidadDias(f1));
+
     }
 
     public void verificarAnio(Fechas f1) {
@@ -171,11 +193,17 @@ public class FechaServicios {
         boolean salir = false;
         while (!salir) {
             System.out.println("Su fecha es " + imprimirFecha(f1.getDia(), f1.getMes(), f1.getAnio()));
+            esperar(1);
             System.out.println("1. Verificar cantidad de días del mes.");
+            esperar(1);
             System.out.println("2. Mostrar fecha anterior a la fecha ingresada.");
+            esperar(1);
             System.out.println("3. Mostrar fecha posterior a la fecha ingresada.");
+            esperar(1);
             System.out.println("4. Verificar si el año es bisiesto.");
+            esperar(1);
             System.out.println("5. Salir");
+            esperar(1);
             int opcion = leer.nextInt();
             switch (opcion) {
                 case 1:
