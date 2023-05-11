@@ -33,8 +33,8 @@ public class Guia8Extraextra5 {
             }*/
             
         }
-        
-        System.out.println(max);
+        System.out.println("--------------------------------------");
+        //System.out.println(max);
         System.out.println("Su área es de: " + s1.mayorArea(triangulos));
 
     }
