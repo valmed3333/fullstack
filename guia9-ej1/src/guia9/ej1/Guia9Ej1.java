@@ -28,7 +28,7 @@ public class Guia9Ej1 {
 
         numerosA.remove(y);
 
-        System.out.println("Se imprimir el ArrayList:");
+        System.out.println("Se imprimira el ArrayList:");
         for (int aux : numerosA) {
             System.out.print(aux + ",");
         }
@@ -38,7 +38,7 @@ public class Guia9Ej1 {
             numerosB.add(i + 3);
         }
         numerosB.remove(3);
-        System.out.println("Se imprimir el HashSet:");
+        System.out.println("Se imprimira el HashSet:");
         for (Integer aux : numerosB) {
             System.out.print(aux + ",");
 

@@ -3,24 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guia9.ejercicio3;
+package guia9.ejercicio5;
 
-import Servicios.AlumnosServicios;
-import java.util.*;
+import Servicios.ServiciosPais;
 
 /**
  *
  * @author SimonValera
  */
-public class Guia9Ejercicio3 {
+public class Guia9Ejercicio5 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AlumnosServicios as = new AlumnosServicios();
-        as.crearLista();
-        System.out.println("La nota promedio es " + as.buscarAlumno());
-
+        ServiciosPais sp = new ServiciosPais();
+        sp.menu();
     }
+    
 }
