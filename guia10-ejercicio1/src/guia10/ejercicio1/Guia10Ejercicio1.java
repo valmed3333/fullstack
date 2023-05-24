@@ -34,6 +34,7 @@ public class Guia10Ejercicio1 {
 
         p1.setPerros(l1);
         p2.setPerros(l2);
+
         System.out.println("El perro de " + p1.getNombre() + " se llama " + p1.getPerros().get(0).getNombre()
                 + ", su raza es " + p1.getPerros().get(0).getRaza()
                 + ", es de tamaño " + p1.getPerros().get(0).getTamano()
@@ -44,13 +45,14 @@ public class Guia10Ejercicio1 {
                 + p1.getGato().getRaza() + ", su tamaño es "
                 + p1.getGato().getTamano() + " y tiene "
                 + p1.getGato().getEdad() + " años.");
-
+        System.out.println("-------------- ");
         for (Perro perro : p2.getPerros()) {
             System.out.println("El perro de " + p2.getNombre() + " se llama " + perro.getNombre()
                     + ", su raza es " + perro.getRaza()
                     + ", es de tamaño " + perro.getTamano()
                     + " y tiene " + perro.getEdad() + " años.");
         }
+        System.out.println("-------------- ");
         for (int i = 0; i < p2.getPerros().size(); i++) {
             System.out.println("El perro de " + p2.getNombre() + " se llama " + p2.getPerros().get(i).getNombre()
                     + ", su raza es " + p2.getPerros().get(i).getRaza()
