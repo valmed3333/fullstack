@@ -1,0 +1,15 @@
+/* links sin visitar */
+a:link {
+    color: #CC0000;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: #ccc;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: #ffF;
+    background-color: #CC0000;
+  }

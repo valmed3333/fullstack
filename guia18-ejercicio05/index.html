@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Script type="text/javascript" src="script.js"></Script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <form action=input>
+        <h3><label for="num1">Primer número</label>
+            <input type="number" id="num1" placeholder="Ingrese el primer número acá">
+        </h3>
+        <h3><label for="num2">Segundo número</label>
+            <input type="number" id="num2" placeholder="Ingrese el segundo número acá">
+        </h3>
+        <h3><label for="operation">Tipo de operación</label>
+            <!-- <input type="text" id="operation" placeholder="Ingrese el tipo de operación acá"> -->
+            <select name="" id="operation">
+                <option value="s">Sumar</option>
+                <option value="r">Resta</option>
+                <option value="m">Multi</option>
+                <option value="d">Dividir</option>
+            </select>
+        </h3>
+        <button type="button" onclick="Calcular()">Calcular</button>
+        <button type="reset">Reiniciar</button>
+        <h2>
+            <label for="result">Resultado</label>
+            <input type="text" id="result" readonly>
+        </h2>
+    </form>
+</body>
+
+</html>

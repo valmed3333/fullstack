@@ -1,0 +1,42 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(59, 107, 249);
+    height: 70px;
+}
+.icon{
+    height: 50px;
+    width: 50px;
+}
+.footer{
+    height: 50px;
+    border-top: 1px solid rgb(59, 107, 249);
+    text-align: center;
+}
+.viajes{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.viaje{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+}
+.viaje .info{
+    width: 400px;
+}
+.viaje img{
+    width: 150px;
+    height: 150px;
+}
+.viaje .fav-icon{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    color: solid rgb(59, 107, 249);
+}

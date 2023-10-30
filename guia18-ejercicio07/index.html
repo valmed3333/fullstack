@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+    <h1>Suma de Números</h1>
+    <div class="Contenido">
+        <p>Ingrese un valor límite positivo y luego ingrese números hasta que la suma supere el límite inicial.</p>
+        <form action="">
+            <input type="number" id="limite1" placeholder="Ingrese el límite">
+            <button id="comenzar" type="button" onclick="comenzarF()"> Comenzar</button><br>
+            <div id="contenido">
+                <input type="number" id="limite2" placeholder="Ingrese un numero">
+                <button id="agregar" type="button" onclick="agregarF()">Agregar</button>
+            </div>
+            <br>
+            <div id="resultado">
+
+                <p>Suma total: <span id="suma"></span></p>
+                <!-- <label for=""></label> -->
+                
+                <input type="number" readonly id="respuesta" placeholder="Respuesta"> 
+                <label for="respuesta" id="alcanzado"></label>
+                <br>
+                
+                <button type="reset" id="reset" onclick="resetF()">Restaurar</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

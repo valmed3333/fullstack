@@ -1,0 +1,815 @@
+<!-- -*- mode: Markdown -*- -->
+<!-- vim: set filetype=markdown :-->
+
+#### Changes in PDFxStream v3.9.6
+
+* Added support for /Alternate color space arrays
+* PDFxStream now ships with a version of 'Century Expanded' AFM font metrics
+* Improvements have been made to the process of repairing damaged or malformed
+  PDF documents, specifically in the detection of incorrect xref tables
+* Fixed the calculation of ascent font metrics for a subset of common embedded
+  AFM fonts
+
+#### Changes in PDFxStream v3.9.5
+
+* Added com.snowtide.pdf.layout.TextUnit.Predicate and corresponding options
+  in Configuration to allow developers to selectively filter characters
+  (TextUnits) from extracted pages.
+* Significantly improved performance on Windows platforms using new nonblocking
+  I/O in key areas.
+* Incrementally improved colorspace and gradient detection support.
+
+#### Changes in PDFxStream v3.9.3
+
+* Significantly improved performance in decoding jbig2 and JPEG2000 image data
+* Adjust constraints associated with determining whether a character is
+  visually underlined, based on updated machine learning model
+* Two security fixes associated with avoiding infinite loops in conjunction
+  with improperly-structured PDFs.
+
+#### Changes in PDFxStream v3.9.1
+
+* Fix NullPointerException thrown when loading a PDF that contains multiple
+  versions of outline (bookmarks) objects
+* Fix handling of improperly-guarded inline images
+* Eliminate layout and performance problems associated with documents that
+  embed images as Type3 font glyphs
+
+#### Changes in PDFxStream v3.9.0
+
+* Added TableUtils.tableToStrings(), allowing easy access to the text-only
+  content of Table instances without any document model programming
+* SECURITY FIX: Modified embedded image handling to avoid DOS possible via
+  specially-constructed input PDF document (CVE pending). Issue affects allN
+  extraction functions (text, images, or form data), so upgrade is strongly
+  recommended for all customers.
+
+#### Changes in PDFxStream v3.8.1
+
+* Significant improvement (minimization) in temporary allocations while parsing
+  PDF dictionaries
+* Tuned preallocation behaviour to play nicer with JVM's Garbage-First (G1)
+  collector
+
+#### Changes in PDFxStream v3.8.0
+
+* Significant improvement in image extraction performance on Java 10 and older
+* Added support for 256-bit AES decryption as defined in PDF specification
+  ISO 32000-2:2020
+
+#### Changes in PDFxStream v3.7.5
+
+Comprehensive revision to handling of damaged/incomplete PDF documents,
+addressing dozens of classes thereof.
+
+#### Changes in PDFxStream v3.7.2
+
+* Off-page rectangles are now ignored; previous handling caused
+  `VisualOutputTarget` to incorrectly gauge the width of such pages, leading to
+  wildly inappropriate spacing.
+* Characters that are only very partially occluded by filled rectangles are now
+  excluded from text extracts.
+* Fixed a divergence in PDFxStream's behaviour on Java versions 8+ compared to 7
+  and below, caused by a JDK change in how iteration order over certain
+  collections was implemented.
+
+#### Changes in PDFxStream v3.7.1
+
+* Improved text occlusion detection to properly account for filled rectangles
+  affected by clipping paths.
+* SECURITY FIX: Modified page tree handling to avoid DOS possible via
+  specially-constructed input PDF document (CVE pending).
+
+#### Changes in PDFxStream v3.7.0
+
+* Now fully loading embedded TrueType font files to obtain character metrics
+* Change handling of
+* Include AFM files for Minion, Myriad, and Open Sans typefaces
+* Added support for out-of-spec documents produced by "Nuance PDF Create" that were
+  previously reported as holding no content
+* Stop including zero-width spaces as characters in document model
+* Fix `VisualOutputTarget` to avoid an `OutOfMemoryError` when the source page
+  contains oddly-skewed characters
+* Fix application of object decryption to avoid decrypting certain embedded
+  cmaps twice
+
+#### Changes in PDFxStream v3.6.0
+
+* Significantly improved layout and spacing calculations for Chinese, Japanese,
+  and Korean
+* Significant performance improvements
+* Added option to control whether or not horizontal textual rules should be elided
+  (see `com.snowtide.pdf.Configuration.setElideHorizontalTextualRules(boolean)`)
+* Fixed default metrics for "Cambria" font
+* Adjust handling of overlapping characters so that reported spatial coordinates
+  are faithful to their encoding in the source PDFs
+* Fixed handling of alternate descriptor for ICC colorspaces
+* Miscellaneous minor bugfixes
+
+#### Changes in PDFxStream v3.5.0
+
+* PDFxStream now supports extracting JPX/JPEG2000 image _data_ from PDF
+  documents
+* Significantly improved page layout performance, up to 30% in many cases
+* Non-standard date/time strings lacking a timezone indicator are now parsed and
+  interpreted within UTC
+* Fixed a bug where some embedded italic fonts were not recognized as such
+* Fixed a bug where characters that are only _partially_ within the bounds of
+  a page were previously excluded from extraction.
+* Fixed a bug where non-NUL control characters were previously disallowed from
+  being mapped as source character codes in custom font encodings.
+
+#### Changes in PDFxStream v3.4.0
+
+* PDFxStream.NET now requires .NET v4.0 or above
+* `com.snowtide.pdf.RegionOutputTarget` now provides a "minimum overlap"
+  configuration option via `.setMinimumOverlapPct(float)`, used to determine how
+  much of each considered character
+  must lie within defined regions in order to be included in the extracted content
+* A new configuration option has been added,
+  `pdfxs.layout.ignoreNonCardinalRotatedChars`. When set via system property,
+  environment variable, or
+  `com.snowtide.pdf.Configuration.setIgnoreNonCardinalRotatedChars(boolean)`,
+  PDFxStream will ignore any characters that are rotated by non-cardinal angles,
+  i.e. any angle other than 0, 90, 180, or 270.
+* Document metadata values that were (improperly) UTF-16 encoded are now
+  repaired before being returned
+* The calculation of spacing between words has been improved.
+* Characters that overlap page bounds by any amount are now included in text
+  extracts. (Previously, characters would need to be wholly within page bounds
+  to be included.)
+* This release includes dozens of bug fixes and enhancements to PDFxStream's
+  support for PDF variants found in the field.
+
+#### Changes in PDFxStream v3.3.7
+
+* Extracted images now each carry an identifier that 
+  (`com.snowtide.pdf.layout.Image.id()`) is unique to the underlying bitmap
+  data. This makes it easy to never load/decode the same bitmap more than once,
+  even if it appears in multiple places in a source PDF.
+* `com.snowtide.pdf.forms.AcroRadioButtonGroupField`s now properly report their
+  `pageNumber()` and `bounds()` (the latter being calculated to be the MBR of
+  the group's component radio buttons).
+* Heuristics related to intra-word whitespace have been improved.
+* Fixed a bug where only the first column partition position added via
+  `com.snowtide.pdf.Page.addColumnPartition(int)` would be recognized.
+* Fixed a bug where an inset table would potentially prevent the recognition
+  of a column boundary.
+
+#### Changes in PDFxStream v3.3.6
+
+* References are now recursively resolved when found as document metadata
+  values.
+* The heuristics used to calculate the number of spaces between characters have
+been updated to be more accurate in properly recognizing and dealing with text
+that is justified, but tightly kerned.
+* Fixed a bug where AFM font metrics were being improperly applied to Type0
+fonts, leading in certain cases to serious overruns of TextUnit bounds beyond
+where they actually should have been.
+* The single-threaded usage limitation has been removed when PDFxStream is used
+without a license file. Instead, PDFxStream will open a maximum of 500 PDF
+documents; this count is reset when you restart your program or
+application. This is intended to be a reasonable development and test limitation
+for most early evaluation purposes. Email us <help@snowtide.com> to obtain a
+license file that will remove this restriction for the duration of your
+development and testing.
+
+#### Changes in PDFxStream v3.3.5
+
+This release contains a significant fix to how text encodings and embedded
+character maps are unioned to produce efficient decoding of multibyte text
+encodings. 
+
+Further small fixes include:
+
+* The widths of named characters that are unmapped in AFM files are now properly
+  applied when referenced in embedded text encoding specifications.
+* Fixed a regression where inline images were not being properly skipped.
+
+#### Changes in PDFxStream v3.3.1
+
+* PDFxStream's command-line support, provided by the `com.snowtide.pdf.Console`
+  class, now includes an option to use `VisualOutputTarget` when extracting text
+  content from a source PDF document.
+* `VisualOutputTarget`'s handling of pages that contain text rendered at
+  different sizes has been significantly improved.
+* Fixed a bug where embedded character maps that don't start with `/CIDInit` are
+  now recognized.
+* Font descent metrics are now taken into account when calculating linebreak
+  counts between lines.
+* A mismatch between the `FontBBox` and ascender/descender metrics was fixed in
+  PDFxStream's bundled Courier font descriptions.
+
+#### Changes in PDFxStream v3.3.0
+
+* PDFxStream.NET now ships with two different PDFxStream assemblies: one for use
+  with VB.NET, one for use with all other .NET languages. This addresses a
+  problem where PDFxStream could not be used with recent VB.NET compilers.
+* Significantly improved the handling of overlapping rectangles when determining
+  visibility of content.
+* Fixed a performance regression introduced in v3.2.0.
+
+#### Changes in PDFxStream v3.2.1
+
+* The output of `pdfts.examples.GoogleHTMLOutputHandler` now includes
+  appropriate `META` tags in order to ensure proper encoding and display of
+  high-code-point Unicode characters.
+* Blocks in the PDFxStream document model are now split more aggressively in
+  order to better correspond with obvious paragraph breaks.
+* Adobe Font Metrics (AFM) are now located properly even when font or font
+  family names are hex-encoded (e.g. `#20` where spaces should be)
+* Fixed a serious regression where vertically-aligned
+  `com.snowtide.pdf.layout.TextUnit`s carrying the same character (sequence) and
+  rendered using monospace fonts would be omitted from text extracts entirely.
+* Fixed a bug where empty-string embedded encodings are now properly ignored.
+* Fixed a bug where (faulty) encoding information from an embedded font was
+  being applied in favor of (accurate) `ToUnicode` character mappings.
+
+#### Changes in PDFxStream v3.2.0
+
+This release contains a number of new features and capabilities, as well as a
+large number of fixes of customer-reported bugs.
+
+* PDFxStream now supports accessing the "appearance" associated with extracted
+  PDF annotations. This is manifested by a separate `com.snowtide.pdf.Page` for
+  each annotation that defines its own appearance, accessible via
+  `com.snowtide.pdf.annot.Annotation.getAppearance()`.
+* `com.snowtide.pdf.VisualOutputTarget` now _includes_ space at the beginning of
+  each line as necessary corresponding to the left margin of the page. This
+  makes it easier to concatenate the text extracted from multiple pages, and
+  process the result cumulatively, which is useful for e.g. tabular data
+  spanning multiple pages where columns are delineated by whitespace. The old
+  behaviour can be recovered via
+  `com.snowtide.pdf.VisualOutputTarget.setMarginTrimmed(true)`.
+* Added `com.snowtide.pdf.TextUnit.getFontSize()`
+* `com.snowtide.pdf.Console` now offers an `--attrs` option, which will emit all
+  of the document-level metadata attributes present in the provided input file.
+* Improved lazy loading of PDF image data (i.e. so that only data associated
+  with the images that an application actually accesses will be loaded)
+* Added support for softmask images
+* Added support for form checkboxes as annotation widgets
+* Fixed bug where PDFxStream was attempting to decrypt certain encrypted PDF
+  strings twice
+* Fixed bug where image data stored using interleaved encodings that include
+  CCITT were not decoded properly
+* PDFxStream's packaging process has now been changed so that intermediate
+  package names will never collide with the name of a class. 
+
+#### Changes in PDFxStream v3.1.3
+
+* A wider range of Unicode space characters are now excluded from the PDFxStream
+  document model, including "regular" non-breaking spaces, as well as zero-width
+  non-breaking spaces.
+* Inference of sub- and super-scripted characters now yields more correct
+  positioning of them within lines.
+* Minor changes have been made to the statistical models that determine the
+  whitespace distance threshold for each line of extracted text.
+* Addressed intra-character whitespace calculation in cases where PDFs use
+  embedded fonts that fail to specify the width of space characters or a default
+  character width
+* Fixed a bug where certain single-byte character encodings were incorrectly
+  treated as being multibyte.
+* Fixed a bug where form extraction would fail for "choice" fields that contained
+  no selectable options.
+
+#### Changes in PDFxStream v3.1.2
+
+* Adopted the Adobe Glyph List mappings for Unicode Private Use Area characters
+* Fixed an issue where PDFxStream would not load on certain v1.5.x JDKs
+
+#### Changes in PDFxStream v3.1.1
+
+Fixed a problem with the packaging of PDFxStream.NET bundles.
+
+#### Changes in PDFxStream v3.1.0
+
+This is the first public release of PDFxStream v3.x. It introduces a number of
+new capabilities and adds tons of smaller improvements over PDFTextStream
+v2.7.0, which preceeded it. Upgrading to PDFxStream should be relatively
+painless: steps have been taken to maximize the API compatibility between the
+two releases, though there are some minor breaking changes (mostly related to
+rebranding to "PDFxStream" as the main product name).
+
+Since moving from v2.7.0 to v3.1.0 constitutes a major upgrade, **existing
+PDFTextStream customers will need new PDFxStream v3.x license file(s)**. Please
+[contact us](mailto:help@snowtide.com) to request issuance of your new
+PDFxStream license file(s).
+
+##### New capabilities
+
+- PDF image extraction is now offered as a distinct feature
+  (`com.snowtide.PDF.Feature.Images`). The key method is
+  `com.snowtide.pdf.Page.getImages()`, which returns a collection of
+  `com.snowtide.pdf.layout.Image` objects that can provide either encoded image
+  data (as PNG, JPEG, etc) or "live" platform-suitable image objects (either
+  `java.awt.image.BufferedImage` on the JVM, or `System.Drawing.Bitmap` on .NET).
+- Extensive set of enhancements to PDFxStream's support for ideosyncratic PDFs,
+  as produced en masse by large vendors (including Oracle, IBM, SAS, and
+  Salesforce products).
+- Significant performance improvements, especially related to the identification
+  of tabular and columnated regions of content.
+- Added `com.snowtide.pdf.Page.getCharacters()`, yielding a collection of
+  `com.snowtide.pdf.layout.TextUnit`s on a page without incurring the costs
+  associated with page segmentation and read-ordering required by calling
+  `Page.getTextContent()` or `Page.pipe(OutputHandler)`.
+- Added support for extracting PDF attachments, both at the document level
+  (`com.snowtide.pdf.Document.getEmbeddedFiles()`) and those associated with
+  particular annotations (`com.snowtide.pdf.annot.FileAttachmentAnnotation`).
+- Added support for identifying the location of interactive form fields via
+  addition of `com.snowtide.pdf.DocumentLocation` as superinterface of
+  `com.snowtide.pdf.forms.AcroFormField`.
+- Wherever possible, the PDFxStream API has been generified to maximize the
+  availability of static type information.
+
+##### Breaking changes
+
+- The Lucene integration API provided by classes in the
+  `com.snowtide.pdf.lucene` package are no longer included in PDFxStream. They
+  will be open-sourced separately in the near future according to customer demand.
+- `com.snowtide.pdf.PDFTextStreamConfig` has been renamed `Configuration`.
+- The memory-mapping option previously offered by `PDFTextStreamConfig` has been
+  removed: memory mapping is now never used by PDFxStream. This addresses
+  various problems with memory-mapping PDF files on Windows, and eliminates an
+  option that no longer had any benefit due to improvements made in how
+  PDFxStream utilizes I/O. Concretely, this change eliminates the following
+  methods and other facilities, with no replacement in the PDFxStream API:
+    - `PDFTextStreamConfig.setMemoryMappingEnabled(boolean)`
+    - `PDFTextStreamConfig.isMemoryMappingEnabled()`
+    - The `pdfts.mmap.disable` system property / environment variable
+- `com.snowtide.pdf.layout.Rectangle` is no longer an empty marker interface; it
+  is now the concrete, default implementation of
+  `com.snowtide.pdf.layout.Region`. The `Rectangle` interface was likely never
+  used by any code consuming PDFTextStream, so breakage associated with this
+  change should be minimal to nonexistent.
+- `com.snowtide.pdf.PDFTextStream` no longer extends `java.io.Reader`, or
+  implements `java.lang.Readable`. Based on customer feedback, these affordances
+  were never used.
+- Many classes in `com.snowtide.pdf.layout` that used to implement the `Region`
+  interface now implement `Bounded` instead. At worst, this change will require
+  that customer code that used to access the spatial properties of a `Region`
+  now must obtain a `Region` from a `Bounded` object first. e.g., this code:
+
+        Block block = ...;
+        float xposition = block.xpos();
+
+    must be changed to:
+  
+        Block block = ...;
+        float xposition = block.bounds().xpos();
+
+- Various methods on `com.snowtide.pdf.EncryptionInfo` were originally made
+  public in error, they are of no use outside of PDFxStream's internals. These
+  methods are now private.
+- `com.snowtide.pdf.Page.getStream()` has been renamed to `getDocument()`.
+- The `public static main (String[])` method previously provided by
+  `com.snowtide.pdf.PDFTextStream` has been consolidated into the catch-all main
+  method provided by `com.snowtide.pdf.Console`.
+- `com.snowtide.pdf.forms.Form`, its sub-interfaces, and its implementations are
+  now generified based on the type of form fields they contain.
+- `com.snowtide.pdf.EncryptionInfo.getErrorType()` now returns an instance of
+  `EncryptionInfo.ErrorType`, a new enumeration.
+- `com.snowtide.pdf.FaultyPDFException`'s constructors are now private.
+- `com.snowtide.pdf.PDFVersion` is now defined as an enumeration, instances of
+  which are returned by `com.snowtide.pdf.Document.getPDFVersion()`
+- `com.snowtide.pdf.Page.getPdfName()` has been removed; use
+  `Page.getDocument().getName()` instead.
+- `com.snowtide.pdf.annot.Annotation` now implements
+  `com.snowtide.pdf.DocumentLocation`; its old methods `getRect()` and
+  `getPageNumber()` have been renamed to match the analogous methods defined by
+  `DocumentLocation`.
+
+##### Miscellaneous additions / fixes / changes
+
+- `com.snowtide.pdf.PDFTextStream` is now deprecated, though its API remains to
+  prevent immediate breakage of code referencing it. Please update your projects
+  to open PDF files via `com.snowtide.PDF.open()`, and use the
+  `com.snowtide.pdf.Document` interface as the type representing those files.
+
+
+#### Changes in PDFTextStream v2.7.0
+
+- PDFTextStream.NET now uses and ships with IKVM 0.46.0.4
+- ASCII "control characters" (0-8) are no longer added to page document models
+- Add support for /CXXX character names (observed in the wild, naming unicode
+  code points in hex), which yields proper decoding of certain documents
+- Added support for embedded CMAP files that use CR characters for linebreaks
+- Added support for embedded font files that assume Windows-1250 text encoding
+- Added workaround for certain PDF documents with malformed embedded CMAP files
+  that would cause an infinite loop / hang in PDFTextStream's processing of said
+  files.
+- Fixed bug in PDF file merge facility that resulted in certain object
+  stream-encoded objects from being included in the result of the merge.
+- Fixed bug where certain signature form fields were not decoded properly, which
+  was causing AcroSignatureField.getValue() to return null (instead of a Map of
+  the field's properties).
+- Fixed bug where compressed PDF object references were unnecessarily loaded
+  repeatedly under .NET 4.5 on Windows
+- Fixed bug where some PDF document merge operations would yield an incorrect
+  reference to /Metadata objects, and thus prevent Acrobat Reader from printing
+  them
+
+#### Changes in PDFTextStream v2.6.4
+
+- Added table detection enablement option to
+  com.snowtide.pdf.PDFTextStreamConfig
+  (PDFTextStreamConfig.isTableDetectionEnabled() and
+  PDFTextStreamConfig.setTableDetectionEnabled(boolean))
+- Eliminated potential NullPointerException when cropping a page prior to its
+  layout being initially calculated (com.snowtide.pdf.Page.crop(Rect))
+- Fixed bug where incorrect character spacing data was applied to Adobe-standard
+  fonts embedded in PDFs (resulting in poor/nonexistent word spacing)
+
+#### Changes in PDFTextStream v2.6.3
+
+- Significantly improved 'repair' procedure for damaged or malformed PDF
+  documents
+- Fixed bug in PDF merge functionality that would occasionally manifest as a
+  blank page
+
+#### Changes in PDFTextStream v2.6.2
+
+- Fixed rendering issue associated with usage of TrueType fonts with
+  multibyte-encoded text streams.
+- Added compatibility fix for PDF documents that contain spurious (out of range)
+  non-printing bytes.
+
+#### Changes in PDFTextStream v2.6.1
+- Enhanced "repair" procedure for PDF documents with one-off stream encoding
+  errors.
+- Fixed handling of text encoding found in PDF documents generated within Mac OS
+  X Lion (whitespace in cmap codepoints)
+
+#### Changes in PDFTextStream v2.6.0
+- New OutputHandler: com.snowtide.pdf.SelectionOutputTarget, implementing text
+  extraction based on a "selection coordinates", as commonly found in
+  user-facing PDF viewer UIs.
+- PDFTextStream is now free for use in single-threaded applications; all
+  previous "evaluation" limitations no longer apply when PDFTextStream is
+  operated without a license file.
+
+#### Changes in PDFTextStream v2.5.0
+- Added support for decryption of AES-encrypted PDF documents (includes support
+  for 256-bit and variable bit length ciphers)
+- PDFTextStream for Java now requires v1.5.0 or higher of the JVM/JRE
+- PDFTextStream.NET is now tested and supported under Mono
+- PDFTextStream.NET now uses and ships with IKVM 0.46.0.1, and requires .NET 2.0
+  or higher.
+- com.snowtide.pdf.PDFTextStream now implements java.io.Closeable
+- com.snowtide.pdf.OutputTarget and its subclasses now accept
+  java.lang.Appendables instead of strictly java.lang.StringBuffers
+- com.snowtide.pdf.PDFTextStream now offers String-based (file path)
+  constructors
+- Dozens of performance and PDF document compatibility enhancements
+- added LinkAnnotation.getTargetPageNumber(); LinkAnnotation no longer
+  improperly shadows Annotation.getPageNumber()
+- Fixes a fatal character decoding bug on IBM J9 JVMs
+- Fixes support for Windows ANSI-encoded PDF text
+- Fixes support for tracking the position and rotation of PDF media boxes (no
+  longer just height/width)
+- The "NOCJK" build of PDFTextStream (all the same functionality, but without
+  the font encoding files needed to extract CJK character sets) is no longer
+  offered
+- PDF merge capability (com.snowtide.pdf.util.MergeUtil) has been deprecated
+- Memory-mapping of opened PDF files is now disabled by default, and has been
+  deprecated
+
+#### Changes in PDFTextStream v2.3.2
+- Fixed issue where PDFTextStream would fail to initialize when the default
+  system locale was set to Shift_JIS (i.e. SJIS, MS932, Windows-31J)
+- Fixed an issue where certain Chinese, Japanese, and Korean fonts were not
+  being loaded properly when specific encoding config data was missing.
+- Fixed an octal string parsing bug that could lead to a PDF parsing failure.
+- Added crop box attribute to com.snowtide.pdf.Page interface
+- An expanded set of control characters are now treated as whitespace.
+- Added support for non-compliant PDF documents produced by TXT2PDF for OS/390.
+
+#### Changes in PDFTextStream v2.3.1
+- Added methods to VisualOutputTarget to enable the optional exclusion of
+  rotated content from its output (523)
+- Fixed a bug where rotated characters were reporting a rotation angle (theta)
+  of 0 when presented to VisualOutputTarget. (519)
+- Fixed a bug where use of PDFTextStream.NET in a multithreaded environment
+  could produce garbled or missing text extracts in very limited circumstances.
+  (512)
+- Added support for PDFs that contain malformed arrays in their graphics output
+  streams (509)
+- Fixed a bug where text rendered using a Type3 font that has a proper unicode
+  mapping was being omitted from extracts (507)
+- Significantly improved the emission of whitespace between words on lines with
+  large amounts of tracking (506)
+- Fixed character mapping for 'ã' and '- ' ("middle dot") (502)
+- Fixed a bug affecting VisualOutputTarget and RegionOutputTarget where smaller
+  characters would not be included in resulting text extracts. (499)
+- Fixed an issue where string values held in compressed object streams were
+  being re-encrypted (primarily affecting key/value PDF attributes) (495)
+- Fixed an issue where PDF documents generated by PDFSharp were improperly
+  handled, leading to significant degradation of extraction accuracy. (490)
+- Fixed an issue where CFF font encodings were being applied inappropriately,
+  potentially leading to garbled extracts. (479)
+- fixed a bug related to zero-length cross-reference entry codes that was
+  resulting in a improper FaultyPDFException being thrown (450)
+
+#### Changes in PDFTextStream v2.3.0
+- Added an .isStruckThrough() method to com.snowtide.pdf.TextUnit, indicating
+  whether a character has a strikethrough drawn through it.
+- Improved PDFTextStream's support for embedded character mappings.
+- The calculation of whitespace between words has been fixed to properly account
+  for whitespace that is explicitly encoded in the source PDF documents.
+- Improved PDFTextStream's handling of composite content encodings, which
+  previously could fail resulting in some ranges of PDF content being 'ignored'
+  during extraction.
+- Fixed a bug in VisualOutputTarget where text from a single line would be split
+  over multiple lines
+- Improved vertical alignment of text extracted using VisualOutputTarget
+- Improved VisualOutputTarget-produced extracts to eliminate spurious additional
+  whitespace between closely-adjacent words
+
+#### Changes in PDFTextStream v2.2.5
+- Added support for extracting XFA forms data as XML
+- Significantly improved the performance of text extraction using
+  VisualOutputTarget
+- Added support for PDF documents larger than 2GB
+- Fixed a bug where the encodings from embedded Type1 fonts were previously not
+  being applied properly in some circumstances.
+- Fixed a problem where newer content in updated PDF documents were sometimes
+  being ignored.
+- Fixed a problem where PDFDocEncoding-encoded bookmarks and metadata were not
+  being decoded properly
+- added .getDestinationName() method to com.snowtide.pdf.Bookmark
+
+#### Changes in PDFTextStream v2.2.1
+- PDFTextStream.NET now ships with ikvm v0.3.4, which fixes a number of problems
+  that prevented PDFTextStream from functioning properly across multiple
+  AppDomains (598)
+- Added PDFTextStream.loadLicense(URL) function (475)
+- Added a 'spacing scale' property to VisualOutputTarget which allows
+  applications to control the amount of horizontal whitespace that should be
+  emitted per physical amount of whitespace found in the source document (528)
+- PDFTextStream will now attempt to load a license file from the host
+  application's current directory before checking the current classpath /
+  AppDomain (661)
+- Fixed a problem where pathological embedded Unicode character encodings were
+  causing PDFTextStream to strings of control characters rather than reasonable
+  extracted content. (428)
+- Fixed a bug in PDFTextStream's handling of cross reference entries that caused
+  fatal errors in some documents (620)
+- Fixed a problem where UTF-16 encoded bookmark titles were not being decoded
+  properly (618)
+
+#### Changes in PDFTextStream v2.2
+- Added support for Apache Lucene v2.1 and v2.2 to PDFTextStream's Lucene
+  integration module (com.snowtide.pdf.lucene.PDFDocumentFactory)
+- Added com.snowtide.pdf.PDFTextStreamConfig, which enables simple static and
+  runtime configuration of PDFTextStream
+- Added new PDFTextStream constructors that accept customized
+  PDFTextStreamConfig instances, and a setConfiguration(PDFTextStreamConfig)
+  function to set a PDFTextStream instance's configuration at runtime
+- PDFTextStream now joins adjacent rectangles that have similar stroke and fill
+  colors, which improves various page segmentation results
+- Improved table detection processes to adaptively recognize very small
+  "variant" table cells
+- Improved pdfts.examples.XMLOutputTarget to build an XML DOM Document instead
+  of constructing XML using a StringBuffer; block elements now include a type
+  attribute of "table" if the block is a table
+- Significantly improved the quality of PDF documents generated when merging PDF
+  files (com.snowtide.pdf.util.MergeUtil) and when saving updated PDF forms
+  (com.snowtide.pdf.forms.AcroForm#writeUpdatedDocument(OutputStream))
+- Rotated text blocks are now properly grouped within bounded regions
+- Changed pdfts.cjk.disable and pdfts.mmap.disable system properties to
+  pdfts.cjk.enable and pdfts.mmap.enable, respectively
+- Fixed an overflow bug in PDFTextStream's PDF data parser
+- Fixed a bug where the ascent and descent characteristics of some fonts were
+  defaulting to improper values
+- Fixed a bug where lines and rectangles drawn with a Separation color space
+  were not being recognized properly
+- Fixed a bug where an error would result when reading a PDF file with a
+  non-conforming linebreak sequence after the `stream' tag
+- Fixed a bug where tables containing underlined text would not be recognized
+  properly
+- Fixed a bug where edges of rectangles were improperly recognized as text
+  underlines
+- Fixed a bug where PDFTextStream wouldn't recognize PDF data stream filter name
+  abbreviations 
+
+#### Changes in PDFTextStream v2.1.6
+- Added com.snowtide.pdf.util.TableUtils, which provides a set of CSV conversion
+  functions for exporting the contents of tables
+- Added options to specify path to load PDFTextStream license file via
+  pdfts_license_path environment variable or system property
+- Added com.snowtide.pdf.PDFTextStream.loadLicense(String) - programmatic way to
+  specify path from which to load PDFTextStream license file
+- Changed PDFTextStream's default page segmentation algorithms to not eliminate
+  empty table cells, making it simpler to export tabular content to Excel, etc.
+- Fixed bug in VisualOutputTarget where vertically-adjacent lines of text were
+  being inappropriately combined
+- Fixed text encoding bug where text extracted from PDF documents generated by
+  Adobe InDesign v4.0 - v5.0 would be "scrambled", or appear to be series of
+  Chinese glyphs
+- Fixed bug where AFM font mappings were sometimes applied in an incorrect
+  order, leading to spot errors in text extracts
+- Fixed bug where certain embedded Type1 font encodings were not being loaded
+  correctly, resulting in single-character extraction errors
+
+#### Changes in PDFTextStream v2.1.5
+- Significant improvements in the handling and standard output of rotated
+  content
+- Added com.snowtide.pdf.layout.TextUnit.getTheta()
+
+#### Changes in PDFTextStream v2.1.3
+- Added com.snowtide.pdf.Font.isItalic() -- indicates whether a font is
+  italicized
+- Added com.snowtide.pdf.layout.TextUnit.isUnderlined() -- indicates whether a
+  character is underlined
+- Added tagging of italic text regions in pdfts.examples.XMLOutputTarget
+
+#### Changes in PDFTextStream v2.1.2
+- Fixed page rotation detection bug when processing PDF documents generated by
+  Crystal Reports
+
+#### Changes in PDFTextStream v2.1.1
+- Significant improvements in output of VisualOutputTarget, especially for pages
+  with many different font sizes
+- Fixed calculation of character widths for Type0 font that have a recognized
+  AFM base font name
+
+#### Changes in PDFTextStream v2.1
+- Added support for updating text, checkbox, radio button, and choice
+  interactive form fields
+- Added support for Kodak print job data extraction (%KDK commands) via
+  com.snowtide.pdf.util.KodakPrintData
+- Exposed the AcroFormField.isReadOnly() function
+- Added ByteBuffer-based buildPDFDocument() functions to
+  com.snowtide.pdf.lucene.PDFDocumentFactory
+- Added the `pdfts.logfactory' and `pdfts.loggingtype' system variables to
+  simplify the customization of logging via
+  com.snowtide.util.logging.LoggingRegistry
+- java.util.logging is now the default logging toolkit; `pdfts.loggingtype' may
+  be used to change that.  Refer to the LoggingRegistry javadocs for more info.
+- Improved documentation significantly
+- Fixed a problem where merged PDF documents that contained empty dictionaries
+  would be improperly generated
+- Fixed a problem where the "rich text" value of text interactive form fields
+  would not be loaded
+
+#### Changes in PDFTextStream v2.0.5
+- Fixed handling of text spacing that was causing some columnated text to
+  overrun column boundaries improperly
+- Fixed a problem where text from adjacent lines would be inappropriately
+  intermingled
+- Changed unlicensed functionality so that evaluation use would not require a
+  special evaluation license file; specifically, PDFTextStream will randomize
+  some digits in text extracts when it is operating unlicensed, and the 8-page
+  extract limitation has been removed
+
+#### Changes in PDFTextStream v2.0.2
+- Added com.snowtide.pdf.RegionOutputTarget to support region-specific content
+  extraction
+- Added ability to derive encoding and spatial metrics of Type3 fonts; added
+  pdfts.type3.derive system property to disable derivation if necessary (359)
+- Fixed problem with com.snowtide.pdf.VisualOutputTarget, where lines would
+  sometimes be inappropriately combined (356)
+
+#### Changes in PDFTextStream v2.0.1
+- Better indication of corrupted or otherwise unreadable PDF files
+  (com.snowtide.pdf.FaultyPDFException)
+- Added pipe(OutputHandler) function to com.snowtide.pdf.layout.Line
+- Added `pdfts.mmap.disable` system property option to disable memory-mapping of
+  PDF files - avoids JDK bug #4724038 (355)
+
+#### Changes in PDFTextStream v2.0
+- PDFTextStream now available for .NET and Python
+- Added support for extraction of Chinese, Japanese, and Korean text (CJK)
+- Added support for accessing derived table structure
+  (com.snowtide.pdf.layout.Table)
+- Significantly improved performance
+- Significantly improved accuracy of extraction of rotated text
+- Added support for Lucene v1.9 and v2.0
+- Added "visual" text layout output target (com.snowtide.pdf.VisualOutputTarget)
+- Added PDF merge capability (com.snowtide.pdf.util.PDFMergeUtil)
+- Added support for Type1C embedded font files (274)
+- Fixed issue where some bookmarks would have invalid page number attributes
+  (i.e. -1) (324)
+- Fixed issues where blocks, lines, and textunits that represented rotated text
+  reported inaccurate positions on the page
+- Fixed issue where xref table was not being rebuilt when object locator was
+  simply missing (338)
+- Eliminated com.snowtide.pdf.PDFTextStreamOptions (deprecated in v1.3)
+
+#### Changes in PDFTextStream v1.4
+- Added support for interactive PDF forms (AcroForms) (com.snowtide.pdf.forms.*
+  and com.snowtide.pdf.PDFTextStream.getFormData()) (118)
+- Added support for derivation of 'graphical' font encoding (Type3) (297)
+- Added com.snowtide.pdf.OutputHandler base class for OutputTarget
+- Added PDFTextStream constructor that takes a java.nio.ByteBuffer, enabling
+  completely in-memory operation
+- Added an example class that extracts form data as XML
+  (pdfts.examples.XMLFormExport)
+- Added sample implementation of com.snowtide.pdf.OutputHandler that outputs PDF
+  text as XML, indicating document structure and where bolded text ranges exist
+  (pdfts.examples.XMLOutputTarget)
+- Added sample OutputHandler implementation that exports PDF text content as an
+  XHTML document (pdfts.examples.GoogleHTMLOutputHandler)
+- Fixed bug where inline images were not being properly skipped (308)
+- Fixed bug where destination bounds of some bookmarks and annotations were not
+  being properly set (307)
+- Fixed bug where text properties (font size, character encoding, etc) would
+  persist beyond where they should (298)
+
+#### Changes in PDFTextStream v1.3.6
+- Fixed potential OutOfMemoryError caused by complex graphical regions (295)
+- Fixed bug where out-of-date content might be extracted from updated PDF
+  documents (296)
+
+#### Changes in PDFTextStream v1.3.5
+- Added PDF annotation API (com.snowtide.pdf.annot.*) (76)
+- Added PDF bookmark API (com.snowtide.pdf.Bookmark and
+  com.snowtide.pdf.PDFTextStream.getBookmarks()) (284)
+- Significantly improved performance parsing PDF data containing very complex
+  illustrations (282)
+- Improved triage procedures for handling damaged or malformed PDF files (292)
+- Fixed bug where com.snowtide.pdf.Page.getPageNumber() was reporting 1-indexed
+  page numbers; it now properly reports 0-indexed page numbers (283)
+- Fixed parsing bug related to zero-length PDF names (290)
+
+#### Changes in PDFTextStream v1.3.4
+- Improved rectangle and line detection to avoid skipping graphics that impact
+  text layout (272)
+- Improved the algorithm used to calculate the number of line breaks to be
+  outputted between lines of text (271)
+- Improved detection and handling of malformed PDF documents to prevent
+  potential infinite loops (278)
+- Fixed compatibility problem with PDFs generated by IBM Manyimage tool
+- Fixed compatibility problem with PDFs generated by SAP R/3 (276)
+- Fixed error thrown when some blank pages are encountered (270)
+
+#### Changes in PDFTextStream v1.3.3
+- Expanded support for referenced form XObjects; results in more complete text
+  extracts (263)
+- Improved font lookup routines; now caching frequently-referenced fonts for
+  improved performance
+- Fixed logging classloading issue on JDK 1.3.1_01
+
+#### Changes in PDFTextStream v1.3.2
+- Significant performance enhancement through improved usage of java.nio.*
+  classes; available only on JDK 1.4+
+
+#### Changes in PDFTextStream v1.3.1
+- Fixed integration with JDK v1.4 java.util.logging toolkit
+
+#### Changes in PDFTextStream v1.3
+- Added ability to retrieve PDF document page attributes (height, width,
+  rotation, etc) (94)
+- Added ability to retrieve PDF document pages one at a time (94)
+- Added ability to retrieve PDF document encryption parameters (99)
+- Added ability to retrieve PDF file specification version number (91)
+- Added pipe() method to PDFTextStream and retrieved PDF pages, allowing easy
+  redirection of content to a buffer to file (92)
+- Significantly improved page segmentation and document read-ordering, resulting
+  in more semantically-consistent text extracts
+- Significantly improved extraction of rotated text
+- Significantly improved extraction of line-bounded tables (107)
+- Deprecated PDFTextStreamOptions class: strictEncoding and page header options
+  no longer used (87, 98)
+- PDFTextStream now always produces Unicode text; the ASCII-only option is no
+  longer provided, as it proved to be unreliable (87)
+- Fixed some minor Unicode text extraction issues related to selecting the
+  proper character encoding for Type 1 fonts (86)
+- Fixed PDFTextStream's implementation of the PDF graphics state stack to more
+  closely conform to the PDF spec (90)
+- Fixed problem where certain monospaced character might be omitted from output
+  (35)
+- Fixed problem where text might be scrambled on a line that contains certain
+  monospaced text (182)
+
+#### Changes in PDFTextStream v1.2
+- Added support for retrieving document-level Adobe XMP data (document metadata
+  in an XML format) (66)
+- Added support for PDF v1.5 files encrypted using crypt filters that specify an
+  invalid decryption key length (63)
+- Improved overview documentation of metadata access in Javadoc and Developer's
+  Guide (70)
+- Fixed support for decrypting updated PDF v1.4 files encrypted with 128-bit
+  passwords (62)
+- Fixed internal error that might have occurred in connection with processing
+  updated PDF documents (72)
+
+#### Changes in PDFTextStream v1.1.2
+- Enhanced the core parsing routines to accept PDF files that use improper (or
+  nonexistant) string escape sequences
+- Fixed a bug that caused hard errors when processing some PDF v1.5 documents.
+- Fixed a bug where a particular text mapping (hex / CIDFont mappings) used in
+  some PDF's would be misinterpreted, resulting in space characters being
+  outputted instead of 'regular' characters
+
+#### Changes in PDFTextStream v1.1.1
+- Fixed a problem where some PDF's that use a particular type of TrueType font
+  were converted into useless text content
+
+#### Changes in PDFTextStream v1.1
+- JDK v1.3 is now fully supported.
+- Significant improvements have been made in the layout and formatting of
+  rotated text.
+- All logging is now channeled through Jakarta's commons-logging library to
+  enable usage of logging toolkits other than log4j.
+
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Mentalista</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="page-title">
+            Mentalista
+        </h1>
+        <img src="https://user-images.githubusercontent.com/121910576/257302088-d2a9edb6-75e5-4118-aaba-6f53da7715dc.png"
+            class="page-logo" alt="">
+        <p class="page-title">Bienvenid@ al mentalista, trata de adivinar un número en la menor cantidad de intentos
+            posibles</p>
+    </div>
+    <div class="container">
+        <form action="">
+            <div class="input-group">
+                <input type="number" id="numero" placeholder="1-1000" class="input-group__input" required />
+                <label for="numero" class="input-group__label">Ingrese un numero del 1 al 1000</label>
+            </div>
+            <br>
+            <button type="button" id="evaluar" onclick="evaluarNumero()">Evaluar</button>
+            <button type="button" id="reloadButton" onclick="recargar()">Reiniciar</button>
+            <br><br>
+
+            <div class="output-group__output">
+                <span id="resultado"></span>
+                <p>Limite superior <span id="limSup">1000</span></p>
+                <p>Limite inferior <span id="limInf">1</span></p>
+                <p>Intento Número <span id="contador">1</span></p>
+
+                <p>Siguiente: <span id="siguiente"></span></p>
+            </div>
+        </form>
+
+    </div>
+    <a href="https://www.aluracursos.com/" target="_blank">
+        <img src="https://www.aluracursos.com/assets/img/home/alura-logo.1686744883.svg" alt=""
+            class="alura-latam-logo">
+        <img
+            src="https://caelum-online-public.s3.amazonaws.com/assets-imersaodev/Ilustra%C3%A7%C3%A3o-c%C3%A9rebro+1.png">
+    </a>
+</body>
+
+</html>

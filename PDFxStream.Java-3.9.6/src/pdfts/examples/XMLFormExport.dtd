@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT form (field+)>
+<!ATTLIST form
+	sourcefile CDATA #REQUIRED
+>
+
+<!ELEMENT field (options?, button-type?, value-richtext?, value*)>
+<!ATTLIST field
+	localname CDATA #REQUIRED
+	fullname CDATA #REQUIRED
+	type CDATA #REQUIRED
+	mappingname CDATA #IMPLIED
+>
+
+<!-- button types: 'push', 'check', 'radio' -->
+<!ELEMENT button-type (#PCDATA)>
+
+<!-- used to represent options available from AcroChoiceField.getOptions() -->
+<!ELEMENT option (exp-value, disp-value)>
+<!ELEMENT options (option+)>
+<!ELEMENT disp-value (#PCDATA)>
+<!ELEMENT exp-value (#PCDATA)>
+
+<!ELEMENT value (#PCDATA)>
+
+<!-- Only used by AcroTextField -->
+<!ELEMENT value-richtext (#PCDATA)>

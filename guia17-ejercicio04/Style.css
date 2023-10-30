@@ -1,0 +1,35 @@
+* {
+    /* align-items: center;
+    align-content: center;
+    align-self: center; */
+    /* text-align: center; */
+
+
+}
+
+
+
+/* body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+} */
+
+#lista {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: right;
+
+}
+
+#segundo {
+    /* width: 33%; */
+
+}
+
+ul {
+    /* display: flex; */
+    /* list-style-position: inside;
+    text-align: center; */
+
+}

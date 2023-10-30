@@ -1,0 +1,52 @@
+h1 {
+    text-emphasis: initial;
+}
+
+img {
+    width: 35%;
+    opacity: 30%;
+    position: fixed;
+    top: 10%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.contenido {
+    display: -moz-box;
+
+    justify-content: center;
+    border-radius: 75%;
+    align-items: center;
+    height: 100vh;
+    /* background-color: rgb(69, 102, 13); */
+    /* transform-box: fill-box; */
+    margin-right: 30px;
+    padding: 20px;
+}
+
+
+#resultados {
+    font-size: 150%;
+    width: 300px;
+    padding: 42px;
+    border-radius: 10%;
+    background-color: #b18585;
+    border-color: 20px solid rgb(26, 41, 3);
+    box-shadow: 4 8 10 10px rgba(80, 300, 80, 0.2);
+}
+
+#agregarBoton {
+    color: darkgreen;
+    font-family: Trebuchet MS;
+    margin-top: 10;
+    border-bottom: 10%;
+    padding-bottom: 3px;
+}
+
+#numeroInput{
+    width : 27.5%;
+    border-radius: 5%;
+    border-color: black;
+    color: darkgreen;
+    
+}

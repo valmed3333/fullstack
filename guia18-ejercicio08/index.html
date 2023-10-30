@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="contenido">
+        <h1>Calculadora de Números</h1><br>
+        <div class="fondo1">
+            <img src="https://losnumeros.info/wp-content/uploads/losnumeros.jpg" alt="">
+        </div>
+        <p>Ingrese números enteros (Digite cero para terminar)</p>
+        <input type="number" id="numeroInput">
+        <button type="button" id="agregarBoton" onclick="calcularResultados()">Agregar</button>
+
+        <div id="resultados">
+            <p>Maximo: <span id="maximo"></span></p>
+            <p>Minimo: <span id="minimo"></span></p>
+            <p>Promedio: <span id="promedio"></span></p>
+            <p id="lista"></p>
+        </div>
+    </div>
+
+</body>
+
+</html>

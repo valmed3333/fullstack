@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invertir Palabra</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+<h1>Invertir palabra</h1>
+    <form action="">
+        <br>
+        <div class="input-group">
+            <input type="text" id="palabra" class="input-group__input" required />
+            <label for="palabra" class="input-group__label">Ingrese una palabra</label>
+        </div>
+
+        <br>
+        <button type="button" id="invertir" onclick="invertirPalabra()">Invertir</button>
+        <button type="reset">Reiniciar</button>
+        <br><br>
+
+        <div class="input-group">
+            <input type="text" id="resultado" class="input-group__input" readonly required />
+            <label for="palabra" class="input-group__label">Palabra invertida</label>
+        </div>
+        
+        <p id="resultado"></p>
+    </form>
+
+</body>
+
+</html>

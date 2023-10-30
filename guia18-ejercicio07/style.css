@@ -1,0 +1,32 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:cadetblue;
+    text-align: center;
+    margin: 50px;
+    align-content: flex-start;
+    border:solid 5px black;
+}
+h1{
+    font-size:3em ;
+
+    color:blueviolet;
+    border: solid 1px white;
+}
+p{
+    font-family:Georgia, Times, 'Times New Roman', serif;
+}
+input{
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    border: solid 1.5px blueviolet;
+}
+
+button{
+    padding: 5px 20px;
+    background-color: black;
+    color: white;
+    border:solid 4px blueviolet;
+    border-radius: 20%;
+    cursor: pointer;
+}

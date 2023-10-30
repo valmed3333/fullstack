@@ -1,0 +1,34 @@
+Thank you for downloading PDFxStream!
+
+To get help with PDFxStream, please visit us at http://www.snowtide.com/
+
+## Requirements
+
+* PDFxStream.Java _requires_ Java v1.5, but we _strongly recommend_ v1.7 or
+  higher
+* PDFxStream.NET requires .NET 2.0 SP2 or higher
+
+Note that when using the image extraction capabilities of PDFxStream
+(PDFImageStream) on Java, decoding certain images requires using a Java 1.7
+runtime or later; previous Java runtimes do not contain certain image data
+decoding improvements that 1.7 and later provide.
+
+## Contents
+
+This distribution contains the following resources:
+
+README -- this file
+
+CHANGELOG -- contains a list of major changes included in this version of
+PDFxStream
+
+LICENSE -- the license for PDFxStream, which you agreed to prior to downloading
+this distribution
+
+api-doc -- API reference for PDFxStream library -- the definitive technical
+reference for PDFxStream for Java and PDFxStream.NET in javadoc form
+
+lib -- contains the PDFxStream library for your platform, as well as any of its
+dependencies. When using PDFxStream.NET, be sure to add only one of the PDFxStream
+assemblies: `PDFxStreamVB.dll` is needed in a VB.NET project, `PDFxStream.dll`
+should be used with all other .NET languages.
